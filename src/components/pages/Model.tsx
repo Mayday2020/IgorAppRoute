@@ -1,22 +1,27 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import {Navigate, useParams} from 'react-router-dom'
 import {adidasArr, AdidasItem} from './Adidas'
-
+import {PATH} from "../../App";
 
 const Model = () => {
     const params = useParams()
     console.log(params.id)
-    const modelItem = params.id ? +params.id - 1: 999
+    const currentModel = adidasArr.find(el => el.id === Number(params.id))
 
     return <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '10px'}}>
-        <h4>{adidasArr[modelItem].model}</h4>
-        <p>{adidasArr[modelItem].collection}</p>
-        <p>{adidasArr[modelItem].price}</p>
-        <img
-            src={adidasArr[modelItem].picture}
-            alt={adidasArr[modelItem].model}
-            style={{width: '400px', height: 'auto'}}
-        />
+        { currentModel
+            ? <>
+                <h4>{currentModel.model}</h4>
+                <p>{currentModel.collection}</p>
+                <p>{currentModel.price}</p>
+                <img
+                    src={currentModel.picture}
+                    alt={currentModel.model}
+                    style={{width: '400px', height: 'auto'}}
+                />
+            </>
+            : <h4>Такой модели не существует</h4>
+        }
     </div>
 }
 

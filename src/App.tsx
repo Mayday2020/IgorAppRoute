@@ -7,10 +7,10 @@ import {Navigate, NavLink, Route, Routes} from 'react-router-dom';
 import {Error404} from "./components/pages/Error404";
 import Model from "./components/pages/Model";
 
-const PATH = {
-    PAGE1: '/page1',
-    PAGE2: '/page2',
-    PAGE3: '/page3',
+export const PATH = {
+    PAGE1: '/adidas',
+    PAGE2: '/puma',
+    PAGE3: '/abibas',
     ERROR: '/error404'
 } as const
 
@@ -38,7 +38,7 @@ function App() {
                         <Route path={PATH.PAGE2} element={<Puma/>}> </Route>
                         <Route path={PATH.PAGE3} element={<Abibas/>}> </Route>
                         <Route path={PATH.ERROR} element={<Error404/>}> </Route>
-                        <Route path={'/adidas/:id'} element={<Model/>}> </Route>
+                        <Route path={`${PATH.PAGE1 + '/:id'}`} element={<Model/>}> </Route>
                         <Route path={'/*'} element={<Navigate to={PATH.ERROR}/>}> </Route>
                     </Routes>
                 </div>
